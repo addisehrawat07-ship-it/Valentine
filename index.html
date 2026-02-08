@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>For Nitika ❤️</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script src="https://unpkg.com/gsap@3/dist/gsap.min.js"></script>
+
+<style>
+:root{
+--rose:#e8b4b8;
+--lav:#c3aed6;
+--champ:#f7e7ce;
+--plum:#4a2c54;
+--cream:#fffaf5;
+}
+
+*{box-sizing:border-box}
+
+body{
+margin:0;
+font-family:'Poppins',sans-serif;
+background:radial-gradient(circle at top,var(--champ),var(--rose));
+overflow:hidden;
+color:#3b2a32;
+perspective:1200px;
+}
+
+.page{
+position:absolute;
+width:100%;
+height:100%;
+display:none;
+align-items:center;
+justify-content:center;
+text-align:center;
+padding:20px;
+}
+
+.active{display:flex}
+
+.card{
+width:90%;
+max-width:340px;
+background:linear-gradient(145deg,#ffffffcc,#fffaf5cc);
+border-radius:28px;
+padding:28px;
+box-shadow:0 40px 80px rgba(0,0,0,.25);
+backdrop-filter:blur(12px);
+transform-style:preserve-3d;
+animation:float 6s ease-in-out infinite;
+}
+
+@keyframes float{
+0%,100%{transform:translateY(0)}
+50%{transform:translateY(-8px)}
+}
+
+button{
+margin-top:18px;
+padding:12px 26px;
+border:none;
+border-radius:24px;
+background:var(--plum);
+color:white;
+font-size:15px;
+font-weight:500;
+}
+
+.fall{
+position:absolute;
+top:-40px;
+animation:fall linear infinite;
+opacity:.8;
+}
+
+@keyframes fall{
+to{transform:translateY(120vh) rotate(360deg)}
+}
+</style>
+</head>
+
+<body>
+
+<!-- 1 -->
+<div class="page active" id="p1">
+<div class="card">
+<h2>Will you be my Valentine? 💖</h2>
+<button onclick="yes()">Yes</button>
+<button id="noBtn" onclick="noMove()">No</button>
+</div>
+</div>
+
+<!-- 2 Rose -->
+<div class="page" id="p2">
+<div class="card">
+<h3>🌹 Rose Day</h3>
+<p>Gulaab dena is not my thing,<br>but gulab jaisa rakhna is my thing.</p>
+<button onclick="next(3)">Next</button>
+</div>
+</div>
+
+<!-- 3 Propose -->
+<div class="page" id="p3">
+<div class="card">
+<h3>💍 Propose Day</h3>
+</div>
+</div>
+
+<audio id="proposeAudio">
+<source src="propose.mp3" type="audio/mpeg">
+</audio>
+
+<!-- 4 Chocolate -->
+<div class="page" id="p4">
+<div class="card">
+<h3>🍫 Chocolate Day</h3>
+<div style="font-size:60px;animation:sway 3s ease-in-out infinite">🍫</div>
+<p>From Aditya 🤭</p>
+<button onclick="next(5)">Next</button>
+</div>
+</div>
+
+<!-- 5 Teddy -->
+<div class="page" id="p5">
+<div class="card">
+<h3>🧸 Teddy Day</h3>
+<div id="teddy" style="font-size:90px">🧸</div>
+<button onclick="next(6)">Next</button>
+</div>
+</div>
+
+<!-- 6 Promise -->
+<div class="page" id="p6">
+<div class="card">
+<h3>🤞 Promise Day</h3>
+<p>Kya promise chahiye aapko mere se?</p>
+<button onclick="next(7)">Next</button>
+</div>
+</div>
+
+<!-- 7 Hug -->
+<div class="page" id="p7">
+<div class="card">
+<h3>🤗 Hug Day</h3>
+<div style="font-size:80px">🧸🤗🧸</div>
+<p>Aisa hug kab de rahe ho?</p>
+<button onclick="next(8)">Next</button>
+</div>
+</div>
+
+<!-- 8 Kiss -->
+<div class="page" id="p8">
+<div class="card">
+<h3>💋 Kiss Day</h3>
+<p style="font-size:14px;line-height:1.6">
+Kiss ka din hai, par koi jaldi nahi,<br>
+Dil jab chahe, pal jab sahi.<br><br>
+Na koi dabav, na koi zid,<br>
+Aapki marzi hi hamari ijazat hai.<br><br>
+Jab aap chahein, tab kareeb aana,<br>
+Jab aap na chahein, tab bhi muskurana,<br><br>
+Kyunki ishq mein zabardasti nahi hoti.
+</p>
+<button onclick="next(9)">Next</button>
+</div>
+</div>
+
+<!-- 9 Valentine -->
+<div class="page" id="p9">
+<div class="card">
+<h3>❤️ Valentine</h3>
+<p style="font-size:14px;line-height:1.6">
+Valentine woh phool nahi jo murjha jaaye,<br>
+Valentine woh haath hai jo chhoot kar bhi thame.<br><br>
+Na har roz muskaan ho, na har pal sukoon,<br>
+Phir bhi jo har haal mein saath nibhaaye.<br><br>
+Jazbaat badal sakte hain, waade nahi,<br>
+Duniya khilaaf ho jaaye, par dil nahi,<br><br>
+Bas itna sa ishq hai—jo har din chuna jaaye.
+</p>
+<div style="font-size:50px;margin:12px">🌸🪑👩‍❤️‍👨🪑🌸</div>
+<p>Bye Bye 👋</p>
+<p>— Aditya ❤️ Nitika</p>
+</div>
+</div>
+
+<script>
+let noCount=0;
+function noMove(){
+let b=noBtn;
+noCount++;
+b.style.position="absolute";
+b.style.left=Math.random()*60+"%";
+b.style.top=Math.random()*60+"%";
+if(noCount>2)b.innerText="Please think again 💔";
+}
+
+function yes(){next(2)}
+
+function next(n){
+document.querySelector(".active").classList.remove("active");
+let p=document.getElementById("p"+n);
+p.classList.add("active");
+
+if(n===3){
+document.getElementById("proposeAudio").play();
+lavender();
+}
+
+gsap.fromTo(p.querySelector(".card"),
+{opacity:0,y:40,rotationX:20},
+{opacity:1,y:0,rotationX:0,duration:1.2,ease:"power2.out"});
+}
+
+function lavender(){
+for(let i=0;i<25;i++){
+let l=document.createElement("div");
+l.className="fall";
+l.innerText="💜";
+l.style.left=Math.random()*100+"%";
+l.style.animationDuration=4+Math.random()*4+"s";
+document.body.appendChild(l);
+}
+}
+</script>
+
+</body>
+</html>
